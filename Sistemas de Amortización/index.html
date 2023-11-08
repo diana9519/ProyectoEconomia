@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas de Amortización</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Sistemas de Amortización</h1>
+    <form>
+        <label for="system">¿Qué tipo de crédito esta buscando?</label>
+        <select id="system" name="system">
+            <option value="french">Seleccionar un elemento</option>
+        </select>
+
+        <label for="amount">Monto que dinero que necesita</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="period">¿En cuantos tiempo quiere pagarlo?</label>
+        <input type="number" id="period" name="period" required>
+
+        <label for="system">Sistema de amortización</label>
+        <select id="system" name="system">
+            <option value="french">FRANCÉS (CUOTA FIJA)</option>
+            <option value="usd">USD</option>
+        </select>
+
+        <button type="submit">Generar</button>
+        <button type="reset">Limpiar</button>
+    </form>
+</body>
+</html>
