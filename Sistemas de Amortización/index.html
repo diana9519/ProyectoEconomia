@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,12 @@
     <link rel="stylesheet" href="styles.css">
     <script src="models/LoanModel.js"></script>
     <script src="views/UIController.js"></script>
-    <script src="controllers/AppController.js"></script>
     <h1>Sistemas de Amortización</h1>
 </head>
 
 <body>
-    
-    <form>
+
+    <form id="myForm">
         <label for="type">¿Qué tipo de crédito esta buscando?</label>
         <select id="type" name="type">
             <option value="french">Seleccionar un elemento</option>
@@ -32,29 +32,59 @@
             <option value="usd">USD</option>
         </select>
 
-        <button type="submit">Generar</button>
+        <button type="button" id="botonGenerar">Generar</button>
         <button type="reset">Limpiar</button>
-
-        <table id="tabla1">
+        
+        <table id="tabla1" class="tabla">
+            <caption id="tituloTabla">Detalle de carga financiera</caption>
             <tr>
                 <th>Concepto</th>
-                <th>USD</th>
+                <th>USD$</th>
                 <th>Explicación en términos utilizados</th>
             </tr>
             <tr>
-                <th>Concepto1</th>
-                <th>123</th>
-                <th> términos utilizados</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </table>
-        <table id="tabla2">
-            <!-- Contenido de la segunda tabla -->
+        <table id="tabla2" class="tabla">
+            <caption id="tituloTabla">Tasa de interés</caption>
+            <tr>
+                <th>Concepto</th>
+                <th>USD$</th>
+                <th>Explicación en términos utilizados</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </table>
-        <table id="tabla3">
+        <table id="tabla3" class="tabla">
+            <caption id="tituloTabla">Tabla de amortización</caption>
+            <tr>
+                <th>Cueota N°</th>
+                <th>Abono Capital</th>
+                <th>Interés</th>
+                <th>Seguro Desg.</th>
+                <th>Cuota</th>
+                <th>Saldo</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
             <!-- Contenido de la tercera tabla -->
         </table>
 
     </form>
+    <script src="controllers/AppController.js" defer></script> <!-- Agregamos el atributo "defer" -->
+
 </body>
 
 <footer>
@@ -63,7 +93,7 @@
         <ul>
             <li><a href="#">Contacto</a></li>
             <li><a href="#">Preguntas Frecuentes</a></li>
-            
+
         </ul>
     </div>
     <div class="footer-column">

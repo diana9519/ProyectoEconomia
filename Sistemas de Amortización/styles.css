@@ -14,12 +14,13 @@ h1 {
 }
 
 form {
-    max-width: 400px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1cm;
 }
 
 label {
@@ -49,6 +50,7 @@ button {
     text-align: center;
     border-radius: 4px;
     transition: background-color 0.3s;
+
 }
 
 button[type="reset"] {
@@ -71,7 +73,8 @@ footer {
 
 /* Estilos para las columnas del footer */
 .footer-column {
-    width: 30%; /* Ajusta el ancho de las columnas según tus preferencias */
+    width: 30%;
+    /* Ajusta el ancho de las columnas según tus preferencias */
     display: inline-block;
     vertical-align: top;
     text-align: left;
@@ -102,14 +105,6 @@ footer p {
 }
 
 
-table {
-    margin: 0 auto !important;
-    /* Centrar la tabla horizontalmente */
-    border-collapse: collapse !important;
-    width: 80% !important;
-    /* Ancho de la tabla */
-}
-
 th,
 td {
     border: 1px solid #ccc !important;
@@ -117,16 +112,86 @@ td {
     text-align: left !important;
 }
 
-th {
-    background-color: #333 !important;
-    color: #fff !important;
-}
+
 
 tr:nth-child(even) {
     background-color: #f2f2f2 !important;
 }
 
-tr:hover {
-    background-color: #ddd !important;
+/* Estilos para los títulos principales de las tablas (Tabla 1, Tabla 2, Tabla 3) */
+#tituloTabla {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
 }
+
+
+/* Estilos para la tabla existente (Tabla 1) */
+#tabla1 {
+    margin: 1cm auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla1 th,
+#tabla1 td {
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+#tabla1 .tituloTabla {
+    
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 1 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 1 */
+}
+
+
+
+#tabla1 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
+
+/* Estilos para la nueva tabla (Tabla 2) */
+#tabla2 {
+    margin: 0 auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla2 .tituloTabla {
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 2 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 2 */
+}
+#tabla2 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
+
+/* Estilos para la nueva tabla (Tabla 3) */
+#tabla3 {
+    margin: 1cm auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla3 .tituloTabla {
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 3 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 3 */
+}
+
+#tabla3 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
 

@@ -1,30 +1,20 @@
-class AppController {
-  constructor(modelo, vista) {
-    this.modelo = modelo;
-    this.vista = vista;
-    this.vista.botonGenerar.addEventListener('click', this.calcular.bind(this));
+document.addEventListener('DOMContentLoaded', function () {
+  // Ocultar todas las tablas y títulos al cargar la página
+  const elementosOcultos = document.querySelectorAll('.tabla, [id^="tituloTabla"]');
+  elementosOcultos.forEach(elemento => {
+    elemento.style.display = 'none';
+  });
 
-    // Ocultar la tabla al cargar la página
-    const tabla1 = document.getElementById('tabla1');
-    tabla1.style.display = 'none';
-  }
+  // Asignar evento al botón "Generar"
+  const botonGenerar = document.getElementById('botonGenerar');
+  botonGenerar.addEventListener('click', function (event) {
+    event.preventDefault(); // Evitar que el formulario se envíe y recargue la página
 
-  calcular() {
-    const monto = parseFloat(document.getElementById('amount').value);
-    const plazo = parseInt(document.getElementById('period').value);
-    const sistemaAmortizacion = document.getElementById('system').value;
+    // Mostrar todas las tablas y títulos al hacer clic en el botón "Generar"
+    const elementosMostrados = document.querySelectorAll('.tabla, [id^="tituloTabla"]');
+    elementosMostrados.forEach(elemento => {
+      elemento.style.display = 'block';
+    });
 
-    const tabla1HTML = LoanModel.calcularTabla1(monto, plazo, sistemaAmortizacion);
-    const tabla2HTML = AmortizationSchedule.calcularTabla2(monto, plazo, sistemaAmortizacion);
-    const tabla3HTML = this.modelo.calcularTabla3(monto, plazo, sistemaAmortizacion);
-
-    // Mostrar la tabla al hacer clic en el botón "Generar"
-    const tabla1 = document.getElementById('tabla1');
-    tabla1.innerHTML = tabla1HTML;
-    tabla1.style.display = 'block'; // Mostrar la tabla
-
-    // Agregar el contenido a las otras tablas y mostrarlas de manera similar
-    document.getElementById('tabla2').innerHTML = tabla2HTML;
-    document.getElementById('tabla3').innerHTML = tabla3HTML;
-  }
-}
+  });
+});
