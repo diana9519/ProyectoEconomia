@@ -1,11 +1,10 @@
 class UIController {
-    constructor() {
-    }
-  
-    obtenerDatosUsuario() {
-    }
-  
-    mostrarResultados(cuotaMensual, totalPago, interesesTotales) {
-    }
+  constructor() {
   }
-  
+
+  obtenerDatosUsuario() {
+  }
+
+  mostrarResultados(cuotaMensual, totalPago, interesesTotales) {
+  }
+}

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistemas de Amortización</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <script src="models/LoanModel.js"></script>
+    <script src="views/UIController.js"></script>
+    <script src="controllers/AppController.js"></script>
     <h1>Sistemas de Amortización</h1>
+</head>
+
+<body>
+    
     <form>
-        <label for="system">¿Qué tipo de crédito esta buscando?</label>
-        <select id="system" name="system">
+        <label for="type">¿Qué tipo de crédito esta buscando?</label>
+        <select id="type" name="type">
             <option value="french">Seleccionar un elemento</option>
         </select>
 
@@ -28,6 +34,50 @@
 
         <button type="submit">Generar</button>
         <button type="reset">Limpiar</button>
+
+        <table id="tabla1">
+            <tr>
+                <th>Concepto</th>
+                <th>USD</th>
+                <th>Explicación en términos utilizados</th>
+            </tr>
+            <tr>
+                <th>Concepto1</th>
+                <th>123</th>
+                <th> términos utilizados</th>
+            </tr>
+        </table>
+        <table id="tabla2">
+            <!-- Contenido de la segunda tabla -->
+        </table>
+        <table id="tabla3">
+            <!-- Contenido de la tercera tabla -->
+        </table>
+
     </form>
 </body>
+
+<footer>
+    <div class="footer-column">
+        <h3>Servicio al Cliente</h3>
+        <ul>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h3>Nuestros Servicios</h3>
+        <ul>
+            <li><a href="#">Sistemas de Amortización</a></li>
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h3>Contacto</h3>
+        <p>Teléfono: 0985332957 - 0990592339</p>
+        <p>Correo Electrónico: info@sistemasdeamortizacion.com</p>
+    </div>
+</footer>
+
+
 </html>

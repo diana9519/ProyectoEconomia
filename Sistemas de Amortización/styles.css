@@ -8,7 +8,7 @@ body {
 h1 {
     text-align: center;
     padding: 20px;
-    background-color: #333;
+    background-color: #071841;
     color: #fff;
     margin: 0;
 }
@@ -28,7 +28,8 @@ label {
     font-weight: bold;
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -59,3 +60,73 @@ button[type="reset"] {
 button:hover {
     background-color: #555;
 }
+
+/* Estilos generales para el footer */
+footer {
+    background-color: #365b77;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Estilos para las columnas del footer */
+.footer-column {
+    width: 30%; /* Ajusta el ancho de las columnas según tus preferencias */
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    padding: 10px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin: 5px 0;
+}
+
+.footer-column a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Estilos para los párrafos en el footer */
+footer p {
+    margin: 10px 0;
+}
+
+
+table {
+    margin: 0 auto !important;
+    /* Centrar la tabla horizontalmente */
+    border-collapse: collapse !important;
+    width: 80% !important;
+    /* Ancho de la tabla */
+}
+
+th,
+td {
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+th {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2 !important;
+}
+
+tr:hover {
+    background-color: #ddd !important;
+}
+
