@@ -5,7 +5,7 @@ $controller = new Controller();
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
     
-    switch ($views) {
+    switch ($view) {
         case 'informacion':
             $controller->mostrarInformacion();
             break;
