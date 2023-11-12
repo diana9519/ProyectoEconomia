@@ -129,6 +129,39 @@ include 'config.php';
         }
 
         ////////////////////////////////////////////////////
+        function calcularTotalIntereses() {
+            const tablaAmortizacion = document.getElementById('tabla3');
+            let totalIntereses = 0;
+
+            for (let i = 1; i < tablaAmortizacion.rows.length; i++) {
+                // El índice 2 representa la columna de intereses en tu tabla
+                const interes = parseFloat(tablaAmortizacion.rows[i].cells[2].textContent);
+                
+                // Verifica si el valor es un número válido antes de sumarlo
+                if (!isNaN(interes)) {
+                    totalIntereses += interes;
+                }
+            }
+
+            return totalIntereses;
+        }
+
+        function calcularSumaTotalCuotas() {
+            const tablaAmortizacion = document.getElementById('tabla3');
+            let sumaTotalCuotas = 0;
+
+            for (let i = 1; i < tablaAmortizacion.rows.length; i++) {
+                // El índice 4 representa la columna de cuota total en tu tabla
+                const cuotaTotal = parseFloat(tablaAmortizacion.rows[i].cells[4].textContent);
+                
+                // Verifica si el valor es un número válido antes de sumarlo
+                if (!isNaN(cuotaTotal)) {
+                    sumaTotalCuotas += cuotaTotal;
+                }
+            }
+
+            return sumaTotalCuotas;
+        }
 
         function calcularAmortizacionFrances() {
             limpiarTabla();
@@ -162,6 +195,16 @@ include 'config.php';
                 // Agregar una fila a la tabla con los resultados
                 agregarFilaTabla(cuota, abonoCapitalRedondeado, interesMensualRedondeado, 0, cuotaMensualRedondeada, saldoPendienteRedondeado);
             }
+
+            // Calcular totales
+            const montoFinanciero = parseFloat(document.getElementById('amount').value);
+            const totalIntereses = calcularTotalIntereses(); // Necesitarías implementar esta función
+            const sumaTotalCuotas = calcularSumaTotalCuotas(); // Necesitarías implementar esta función
+
+            // Actualizar los totales en la tabla
+            document.getElementById('montoFinanciero').textContent = montoFinanciero.toFixed(2);
+            document.getElementById('totalIntereses').textContent = totalIntereses.toFixed(2);
+            document.getElementById('sumaTotalCuotas').textContent = sumaTotalCuotas.toFixed(2);
         }
 
         // Función para redondear valores a dos decimales
@@ -186,7 +229,7 @@ include 'config.php';
 
 
             agregarFilaTabla(0, 0, 0, 0, 0, saldoPendiente);
-            
+
             for (let cuota = 1; cuota <= plazoMeses; cuota++) {
                 const interesMensual = saldoPendiente * tasaMensual;
                 saldoPendiente -= abonoCapital;
@@ -194,6 +237,15 @@ include 'config.php';
                 // Agregar una fila a la tabla con los resultados
                 agregarFilaTabla(cuota, abonoCapital, interesMensual, 0, abonoCapital + interesMensual, saldoPendiente);
             }
+
+            const montoFinanciero = parseFloat(document.getElementById('amount').value);
+            const totalIntereses = calcularTotalIntereses(); // Necesitarías implementar esta función
+            const sumaTotalCuotas = calcularSumaTotalCuotas(); // Necesitarías implementar esta función
+
+            // Actualizar los totales en la tabla
+            document.getElementById('montoFinanciero').textContent = montoFinanciero.toFixed(2);
+            document.getElementById('totalIntereses').textContent = totalIntereses.toFixed(2);
+            document.getElementById('sumaTotalCuotas').textContent = sumaTotalCuotas.toFixed(2);
         }
 
         function generarAmortizacion() {
@@ -309,11 +361,22 @@ include 'config.php';
                 <th>Explicación en términos utilizados</th>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td>Monto Financiero</td>
+                <td id="montoFinanciero">0.00</td>
+                <td>Es el monto del crédito otorgado</td>
+            </tr>
+            <tr>
+                <td>Intereses</td>
+                <td id="totalIntereses">0.00</td>
+                <td>Equivale a la suma de intereses que paga el socio durante la vigencia del crédito</td>
+            </tr>
+            <tr>
+                <td>Suma total de cuotas</td>
+                <td id="sumaTotalCuotas">0.00</td>
+                <td>Equivale a la suma de las cuotas que paga el socio durante la vigencia del crédito</td>
             </tr>
         </table>
+
         <table id="tabla2" class="tabla">
             <caption id="tituloTabla">Tasa de interés</caption>
             <tr>
