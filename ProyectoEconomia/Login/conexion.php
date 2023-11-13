@@ -2,7 +2,7 @@
 
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "root";
+$dbpass = "Diana12345";
 $dbname = "proyectoeconomia";
 
 $conn = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);

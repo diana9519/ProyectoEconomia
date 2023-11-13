@@ -279,6 +279,16 @@ include 'config.php';
                 // Agregar una fila a la tabla con los resultados
                 agregarFilaTabla(cuota, abonoCapital, interesMensual, abonoCapital + interesMensual, saldoPendiente);
             }
+
+            // Calcular totales
+            const montoFinanciero = parseFloat(document.getElementById('amount').value);
+            const totalIntereses = calcularTotalIntereses(); // Necesitarías implementar esta función
+            const sumaTotalCuotas = calcularSumaTotalCuotas(); // Necesitarías implementar esta función
+
+            // Actualizar los totales en la tabla
+            document.getElementById('montoFinanciero').textContent = montoFinanciero.toFixed(2);
+            document.getElementById('totalIntereses').textContent = totalIntereses.toFixed(2);
+            document.getElementById('sumaTotalCuotas').textContent = sumaTotalCuotas.toFixed(2);
         }
 
         function generarAmortizacion() {
