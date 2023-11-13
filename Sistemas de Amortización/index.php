@@ -94,6 +94,9 @@ include 'config.php';
             periodSlider.addEventListener('input', function() {
                 periodInput.value = periodSlider.value;
             });
+
+
+            
         });
 
         // Función para actualizar los límites del campo amount y el slider
@@ -126,7 +129,39 @@ include 'config.php';
             periodSlider.max = selectedTipo.plazo_maximo_meses;
             periodSlider.value = 1; // Establecer el valor inicial a 1
             periodSlider.step = 1;
+
+            actualizarTablaTasas(selectedTipo.tasa_interes_anual);
         }
+
+        // Nueva función para actualizar la tabla2
+        function actualizarTablaTasas(tasaInteresAnual) {
+            const tablaTasas = document.getElementById('tabla2');
+
+            // Limpiar la tabla antes de agregar nuevas filas
+            tablaTasas.innerHTML = '';
+            agregarFilaTablaTasas('Concepto', '%', 'Explicación en términos utilizados');
+            agregarFilaTablaTasas('Tasa Nominal', tasaInteresAnual.toFixed(2), 'Es la Tasa de Interés Anual');
+
+            // Calcular la tasa de interés efectiva mensual
+            const tasaEfectivaMensual = Math.pow(1 + tasaInteresAnual / 100, 1 / 12) - 1;
+
+            // Agregar la fila con la tasa de interés efectiva mensual
+            agregarFilaTablaTasas('Tasa Efectiva', (tasaEfectivaMensual * 100).toFixed(2), 'Es la Tasa de Interés de operación según el número de períodos de pago al año');
+
+            // Función para agregar filas a la tabla2
+            function agregarFilaTablaTasas(concepto, porcentaje, explicacion) {
+                
+                const fila = tablaTasas.insertRow();
+                const celdaConcepto = fila.insertCell(0);
+                const celdaPorcentaje = fila.insertCell(1);
+                const celdaExplicacion = fila.insertCell(2);
+
+                celdaConcepto.textContent = concepto;
+                celdaPorcentaje.textContent = porcentaje;
+                celdaExplicacion.textContent = explicacion;
+            }
+        }
+
 
         ////////////////////////////////////////////////////
         function calcularTotalIntereses() {
@@ -136,7 +171,7 @@ include 'config.php';
             for (let i = 1; i < tablaAmortizacion.rows.length; i++) {
                 // El índice 2 representa la columna de intereses en tu tabla
                 const interes = parseFloat(tablaAmortizacion.rows[i].cells[2].textContent);
-                
+
                 // Verifica si el valor es un número válido antes de sumarlo
                 if (!isNaN(interes)) {
                     totalIntereses += interes;
@@ -152,8 +187,8 @@ include 'config.php';
 
             for (let i = 1; i < tablaAmortizacion.rows.length; i++) {
                 // El índice 4 representa la columna de cuota total en tu tabla
-                const cuotaTotal = parseFloat(tablaAmortizacion.rows[i].cells[4].textContent);
-                
+                const cuotaTotal = parseFloat(tablaAmortizacion.rows[i].cells[3].textContent);
+
                 // Verifica si el valor es un número válido antes de sumarlo
                 if (!isNaN(cuotaTotal)) {
                     sumaTotalCuotas += cuotaTotal;
@@ -179,7 +214,7 @@ include 'config.php';
             limpiarTabla();
 
             // Agregar la fila con los valores iniciales
-            agregarFilaTabla(0, 0, 0, 0, 0, saldoPendiente);
+            agregarFilaTabla(0, 0, 0, 0, saldoPendiente);
 
             for (let cuota = 1; cuota <= plazoMeses; cuota++) {
                 const interesMensual = saldoPendiente * tasaMensual;
@@ -193,8 +228,9 @@ include 'config.php';
                 const saldoPendienteRedondeado = roundToTwo(saldoPendiente);
 
                 // Agregar una fila a la tabla con los resultados
-                agregarFilaTabla(cuota, abonoCapitalRedondeado, interesMensualRedondeado, 0, cuotaMensualRedondeada, saldoPendienteRedondeado);
+                agregarFilaTabla(cuota, abonoCapitalRedondeado, interesMensualRedondeado, cuotaMensualRedondeada, saldoPendienteRedondeado);
             }
+
 
             // Calcular totales
             const montoFinanciero = parseFloat(document.getElementById('amount').value);
@@ -228,24 +264,15 @@ include 'config.php';
             let saldoPendiente = montoPrestamo;
 
 
-            agregarFilaTabla(0, 0, 0, 0, 0, saldoPendiente);
+            agregarFilaTabla(0, 0, 0, 0, saldoPendiente);
 
             for (let cuota = 1; cuota <= plazoMeses; cuota++) {
                 const interesMensual = saldoPendiente * tasaMensual;
                 saldoPendiente -= abonoCapital;
 
                 // Agregar una fila a la tabla con los resultados
-                agregarFilaTabla(cuota, abonoCapital, interesMensual, 0, abonoCapital + interesMensual, saldoPendiente);
+                agregarFilaTabla(cuota, abonoCapital, interesMensual, abonoCapital + interesMensual, saldoPendiente);
             }
-
-            const montoFinanciero = parseFloat(document.getElementById('amount').value);
-            const totalIntereses = calcularTotalIntereses(); // Necesitarías implementar esta función
-            const sumaTotalCuotas = calcularSumaTotalCuotas(); // Necesitarías implementar esta función
-
-            // Actualizar los totales en la tabla
-            document.getElementById('montoFinanciero').textContent = montoFinanciero.toFixed(2);
-            document.getElementById('totalIntereses').textContent = totalIntereses.toFixed(2);
-            document.getElementById('sumaTotalCuotas').textContent = sumaTotalCuotas.toFixed(2);
         }
 
         function generarAmortizacion() {
@@ -261,28 +288,26 @@ include 'config.php';
         function limpiarTabla() {
             const tablaAmortizacion = document.getElementById('tabla3');
             tablaAmortizacion.innerHTML = '';
-            agregarFilaTabla('Cuota N°', 'Abono Capital', 'Interés', 'Seguro Desg.', 'Cuota', 'Saldo');
+            agregarFilaTabla('Cuota N°', 'Abono Capital', 'Interés', 'Cuota', 'Saldo');
         }
 
-        function agregarFilaTabla(cuota, abonoCapital, interes, seguro, cuotaTotal, saldo) {
+        function agregarFilaTabla(cuota, abonoCapital, interes, cuotaTotal, saldo) {
 
             const tablaAmortizacion = document.getElementById('tabla3');
             const fila = tablaAmortizacion.insertRow();
             const celdaCuota = fila.insertCell(0);
             const celdaAbonoCapital = fila.insertCell(1);
             const celdaInteres = fila.insertCell(2);
-            const celdaSeguro = fila.insertCell(3);
-            const celdaCuotaTotal = fila.insertCell(4);
-            const celdaSaldo = fila.insertCell(5);
+            const celdaCuotaTotal = fila.insertCell(3);
+            const celdaSaldo = fila.insertCell(4);
 
             // Verificar si es un encabezado
-            const esEncabezado = cuota === 'Cuota N°' && abonoCapital === 'Abono Capital' && interes === 'Interés' && seguro === 'Seguro Desg.' && cuotaTotal === 'Cuota' && saldo === 'Saldo';
+            const esEncabezado = cuota === 'Cuota N°' && abonoCapital === 'Abono Capital' && interes === 'Interés' && cuotaTotal === 'Cuota' && saldo === 'Saldo';
 
             // Si es un encabezado, usar los valores directamente, de lo contrario, realizar conversiones
             celdaCuota.innerHTML = esEncabezado ? cuota : parseFloat(cuota).toFixed(0);
             celdaAbonoCapital.innerHTML = esEncabezado ? abonoCapital : formatNumber(abonoCapital, 2);
             celdaInteres.innerHTML = esEncabezado ? interes : formatNumber(interes, 2);
-            celdaSeguro.innerHTML = esEncabezado ? seguro : formatNumber(seguro, 2);
             celdaCuotaTotal.innerHTML = esEncabezado ? cuotaTotal : formatNumber(cuotaTotal, 2);
             celdaSaldo.innerHTML = esEncabezado ? saldo : formatNumber(saldo, 2);
         }
@@ -378,7 +403,7 @@ include 'config.php';
         </table>
 
         <table id="tabla2" class="tabla">
-            <caption id="tituloTabla">Tasa de interés</caption>
+            <caption id="tituloTabla2">Tasa de interés</caption>
             <tr>
                 <th>Concepto</th>
                 <th>USD$</th>
@@ -391,7 +416,7 @@ include 'config.php';
             </tr>
         </table>
         <table id="tabla3" class="tabla">
-            <caption id="tituloTabla">Tabla de amortización</caption>
+            <caption id="tituloTabla3">Tabla de amortización</caption>
             <tr>
                 <th>Cueota N°</th>
                 <th>Abono Capital</th>

@@ -14,7 +14,7 @@ h1 {
 }
 
 form {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -120,6 +120,23 @@ tr:nth-child(even) {
 
 /* Estilos para los títulos principales de las tablas (Tabla 1, Tabla 2, Tabla 3) */
 #tituloTabla {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
+}
+
+#tituloTabla2 {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
+}
+#tituloTabla3 {
     padding: 15px;
     background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
     color: #fff !important;
