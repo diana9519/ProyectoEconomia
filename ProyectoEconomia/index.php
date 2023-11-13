@@ -15,7 +15,13 @@ include 'config.php';
     <link rel="stylesheet" href="styles.css">
     <script src="models/LoanModel.js"></script>
     <script src="views/UIController.js"></script>
-    <h1>Sistemas de Amortización</h1>
+    <h1>Sistemas de Amortización
+    
+        <a  id="Login" href="Login/" >Inciar Sesíon</a>    
+        
+    
+    </h1>
+    
     <script>
         // Declarar tiposCredito en el ámbito global
         let tiposCredito;

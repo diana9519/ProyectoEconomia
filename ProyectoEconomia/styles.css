@@ -13,6 +13,17 @@ h1 {
     margin: 0;
 }
 
+#Login{
+    color: #fff; /* Cambia el color del texto a azul (puedes ajustar según tus preferencias) */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    font-weight: bold; /* Hace que el texto sea más grueso */
+    /* Puedes agregar más estilos según tus necesidades */
+    float: right;
+    background-color: #696969; /* Color de fondo del cuadro (puedes personalizarlo) */
+    padding: 5px; /* Espaciado interno del contenedor (puedes ajustarlo según tus necesidades) */
+    border-radius: 10px
+}
+
 form {
     max-width: 1000px;
     margin: 0 auto;
