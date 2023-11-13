@@ -143,10 +143,10 @@ include 'config.php';
             agregarFilaTablaTasas('Tasa Nominal', tasaInteresAnual.toFixed(2), 'Es la Tasa de Interés Anual');
 
             // Calcular la tasa de interés efectiva mensual
-            const tasaEfectivaMensual = Math.pow(1 + tasaInteresAnual / 100, 1 / 12) - 1;
+            const tasaEfectivaMensual = tasaInteresAnual / 12;
 
             // Agregar la fila con la tasa de interés efectiva mensual
-            agregarFilaTablaTasas('Tasa Efectiva', (tasaEfectivaMensual * 100).toFixed(2), 'Es la Tasa de Interés de operación según el número de períodos de pago al año');
+            agregarFilaTablaTasas('Tasa Efectiva',tasaEfectivaMensual.toFixed(2), 'Es la Tasa de Interés de operación según el número de períodos de pago al año');
 
             // Función para agregar filas a la tabla2
             function agregarFilaTablaTasas(concepto, porcentaje, explicacion) {
