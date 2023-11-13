@@ -23,3 +23,4 @@ if (isset($_GET['view'])) {
     // Aquí puedes mostrar una página de inicio o redirigir a la primera vista
 }
 ?>
+
