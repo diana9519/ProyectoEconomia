@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2023 a las 04:11:01
+-- Tiempo de generación: 13-11-2023 a las 01:30:43
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -102,9 +102,26 @@ CREATE TABLE `tabla_amortizacion` (
 CREATE TABLE `tipos_de_creditos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
-  `tasa_interes_anual` decimal(5,2) DEFAULT NULL,
-  `plazo_maximo_meses` int(11) DEFAULT NULL
+  `tasa_interes_anual` decimal(10,2) DEFAULT NULL,
+  `plazo_maximo_meses` int(11) DEFAULT NULL,
+  `monto_minimo` decimal(10,2) NOT NULL,
+  `monto_maximo` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipos_de_creditos`
+--
+
+INSERT INTO `tipos_de_creditos` (`id`, `nombre`, `tasa_interes_anual`, `plazo_maximo_meses`, `monto_minimo`, `monto_maximo`) VALUES
+(1, 'PRODUCTIVO PYMES', '10.40', 60, '5000.00', '200000.00'),
+(2, 'PRODUCTIVO EMPRESARIAL', '9.30', 60, '5000.00', '200000.00'),
+(3, 'PRODUCTIVO CORPORATIVO', '8.30', 60, '5000.00', '200000.00'),
+(4, 'CONSUMO', '14.00', 120, '400.00', '200000.00'),
+(5, 'MICROCREDITO', '17.99', 72, '400.00', '10000.00'),
+(6, 'VIVIENDA', '9.50', 120, '5000.00', '200000.00'),
+(7, 'ESTUDIANTIL', '12.20', 60, '400.00', '20000.00'),
+(8, 'MAESTRIAS', '12.20', 60, '400.00', '35000.00'),
+(9, 'PHD', '12.20', 84, '400.00', '30000.00');
 
 --
 -- Índices para tablas volcadas
@@ -183,7 +200,7 @@ ALTER TABLE `tabla_amortizacion`
 -- AUTO_INCREMENT de la tabla `tipos_de_creditos`
 --
 ALTER TABLE `tipos_de_creditos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
