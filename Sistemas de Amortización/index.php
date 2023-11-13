@@ -96,7 +96,7 @@ include 'config.php';
             });
 
 
-            
+
         });
 
         // Función para actualizar los límites del campo amount y el slider
@@ -150,7 +150,7 @@ include 'config.php';
 
             // Función para agregar filas a la tabla2
             function agregarFilaTablaTasas(concepto, porcentaje, explicacion) {
-                
+
                 const fila = tablaTasas.insertRow();
                 const celdaConcepto = fila.insertCell(0);
                 const celdaPorcentaje = fila.insertCell(1);
@@ -276,6 +276,24 @@ include 'config.php';
         }
 
         function generarAmortizacion() {
+            const montoInput = document.getElementById('amount');
+            const periodoInput = document.getElementById('period');
+            const monto = parseFloat(montoInput.value);
+            const periodo = parseInt(periodoInput.value);
+            const selectedType = tiposCredito.find(tipo => tipo.id == document.getElementById('type').value);
+
+            if (isNaN(monto) || monto < parseFloat(selectedType.monto_minimo) || monto > parseFloat(selectedType.monto_maximo)) {
+                alert('El monto ingresado no es válido. Debe estar dentro del rango permitido.');
+                montoInput.value = selectedType.monto_minimo;
+                return;
+            }
+
+            if (isNaN(periodo) || periodo < 1 || periodo > parseInt(selectedType.plazo_maximo_meses)) {
+                alert('El período ingresado no es válido. Debe estar dentro del rango permitido.');
+                periodoInput.value = 1;
+                return;
+            }
+
             const sistemaAmortizacion = document.getElementById('system').value;
 
             if (sistemaAmortizacion === 'french') {
@@ -284,6 +302,7 @@ include 'config.php';
                 calcularAmortizacionAleman();
             }
         }
+
 
         function limpiarTabla() {
             const tablaAmortizacion = document.getElementById('tabla3');
