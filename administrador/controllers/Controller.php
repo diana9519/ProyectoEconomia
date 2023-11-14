@@ -13,13 +13,13 @@ class Controller {
     public function mostrarVista($vista) {
         switch ($vista) {
             case 'informacion':
-                $detallesInstitucion = $this->modelo->obtenerInstituciones()[0]; 
+                $detallesInstitucion = $this->modelo->obtenerInstituciones(); 
                 include 'views/informacion.php';
                 break;
 
             case 'tasa':
                 $tiposDeCreditos = $this->modelo->obtenerTiposDeCreditos();
-                $detallesInstitucion = $this->modelo->obtenerInstituciones()[0]; 
+                $detallesInstitucion = $this->modelo->obtenerInstituciones(); 
                 include 'views/tasa.php';
                 break;
 
@@ -29,25 +29,18 @@ class Controller {
         }
     }
 
-
-    public function guardarInformacion($datos) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
-            $controller = new Controller();
-        
-            switch ($_POST['accion']) {
-                case 'guardar_informacion':
-                    // Llama a un método en el controlador para manejar la acción de guardar
-                    $controller->guardarInformacion($_POST);
-                    break;
-                // Otros casos según sea necesario...
-            }
+    public function procesarFormulario($datos) {
+        if (isset($datos['accion']) && $datos['accion'] === 'guardar_informacion') {
+            $id = $datos['id'];
+            $nombre = $datos['nombre'];
+            $logo = isset($datos['logo']) ? $datos['logo'] : null; // Cambiado para manejar el archivo de imagen
+            $direccion = $datos['direccion'];
+    
+            $this->modelo->guardarInformacion($id, $nombre, $logo, $direccion);
         }
     }
     
-    
-
-
-
+       
 
 }
 ?>

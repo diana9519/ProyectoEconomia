@@ -3,11 +3,16 @@ $currentView = isset($_GET['view']) ? $_GET['view'] : '';
 // Agrega esto al inicio de tu archivo index.php o donde procesas las solicitudes
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     $controller = new Controller();
-    
+    $controller->procesarFormulario($_POST);
 }
 
 
+
+$imagenBinaria = $detallesInstitucion['logo'];
+$imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
+$imagenCodificada = 'data:' . $imagenTipo . ';base64,' . base64_encode($imagenBinaria);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -170,27 +175,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     </div>
   
     <h1>Información de la Institución</h1>
-    <form action="index.php?view=informacion" method="post" enctype="multipart/form-data">
+
+<form action="index.php?view=informacion" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $detallesInstitucion['id']; ?>">
     <label for="nombre">Nombre de la Institución:</label>
-        <input type="text" id="nombre" name="nombre" value="<?php echo $detallesInstitucion['nombre']; ?>" required>
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" value="<?php echo $detallesInstitucion['direccion']; ?>" required>
-        
-        <label for="logo">Logo:</label>
-        <!-- Mostrar la imagen actual -->
-        <?php
-        $imagenBinaria = $detallesInstitucion['logo'];
-        $imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
-        $imagenCodificada = 'data:' . $imagenTipo . ';base64,' . base64_encode($imagenBinaria);
-        ?>
-        <img src="<?php echo $imagenCodificada; ?> "style="width:200px" alt="Logo Actual">
-        <!-- Permitir la carga de un nuevo logo si es necesario -->
-        <input type="file" id="logo" name="logo" accept="image/*">
-        
-        <input type="hidden" name="accion" value="guardar_informacion">
+    <input type="text" id="nombre" name="nombre" value="<?php echo $detallesInstitucion['nombre']; ?>" required>
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" name="direccion" value="<?php echo $detallesInstitucion['direccion']; ?>" required>
+
+    <label for="logo">Logo:</label>
+    <img src="<?php echo $imagenCodificada; ?>" style="width:200px" alt="Logo Actual">
+    <!-- Permitir la carga de un nuevo logo si es necesario -->
+    <input type="file" id="logo" name="logo" accept="image/*">
+
+    <input type="hidden" name="accion" value="guardar_informacion">
     <input type="submit" value="Guardar">
-    </form>
+</form>
+
+
+
 
 </body>
 

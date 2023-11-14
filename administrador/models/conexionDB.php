@@ -1,6 +1,7 @@
 <?php
 
 class ConexionDB {
+    private $mysqli;
     private $host = "localhost";
     private $usuario = "root";
     private $contrasena = "";
@@ -18,6 +19,15 @@ class ConexionDB {
 
     public function query($sql) {
         return $this->conexion->query($sql);
+    }
+    public function getConexion() {
+        return $this->mysqli;
+    }
+    public function escape_string($string) {
+        return $this->mysqli->real_escape_string($string);
+    }
+    public function prepare($query) {
+        return $this->conexion->prepare($query);
     }
 }
 ?>
