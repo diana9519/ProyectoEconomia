@@ -15,13 +15,17 @@ include 'config.php';
     <link rel="stylesheet" href="styles.css">
     <script src="models/LoanModel.js"></script>
     <script src="views/UIController.js"></script>
+    <script src=""></script>
+
+    <script type="module" src="node_modules/jspdf/dist/jspdf.umd.min.js"></script>
+    <script type="module" src="node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js"></script>
     <h1>Sistemas de Amortización
-    
-        <a  id="Login" href="Login/" >Inciar Sesíon</a>    
-        
-    
+
+        <a id="Login" href="Login/">Inciar Sesíon</a>
+
+
     </h1>
-    
+
     <script>
         // Declarar tiposCredito en el ámbito global
         let tiposCredito;
@@ -152,7 +156,7 @@ include 'config.php';
             const tasaEfectivaMensual = tasaInteresAnual / 12;
 
             // Agregar la fila con la tasa de interés efectiva mensual
-            agregarFilaTablaTasas('Tasa Efectiva',tasaEfectivaMensual.toFixed(2), 'Es la Tasa de Interés de operación según el número de períodos de pago al año');
+            agregarFilaTablaTasas('Tasa Efectiva', tasaEfectivaMensual.toFixed(2), 'Es la Tasa de Interés de operación según el número de períodos de pago al año');
 
             // Función para agregar filas a la tabla2
             function agregarFilaTablaTasas(concepto, porcentaje, explicacion) {
@@ -380,6 +384,9 @@ include 'config.php';
 
         tasaInteresXHR.open('GET', 'controllers/getTiposCredito.php', true);
         tasaInteresXHR.send();
+
+    
+        
     </script>
 
 </head>
@@ -411,6 +418,8 @@ include 'config.php';
         </select>
 
         <button type="button" id="botonGenerar" onclick="generarAmortizacion()">Generar</button>
+        <button id="btnGenerarPDF" type="button">Generar PDF</button>
+
         <button type=" reset">Limpiar</button>
 
         <table id="tabla1" class="tabla">
@@ -473,7 +482,44 @@ include 'config.php';
 
     </form>
     <script src="controllers/AppController.js" defer></script> <!-- Agregamos el atributo "defer" -->
+<script>
+    
+    document.getElementById('btnGenerarPDF').addEventListener('click', function() {
+    // Asignar jsPDF a window.jsPDF
+    window.jsPDF = window.jspdf.jsPDF;
 
+    // Crear una instancia de jsPDF
+    const pdf = new window.jsPDF(); // Puedes usar directamente window.jsPDF o window.jspdf.jsPDF
+
+    // Llamar a la función que actualiza y calcula los datos de las tablas
+    generarAmortizacion(); // Esta función parece ser la que actualiza las tablas según los datos ingresados
+
+    const tabla1 = document.getElementById('tabla1');
+    const tabla2 = document.getElementById('tabla2');
+    const tabla3 = document.getElementById('tabla3');
+
+    // Generar PDF a partir de las tablas
+    pdf.text(10, 10, 'Detalle de carga financiera');
+    pdf.autoTable({
+        html: tabla1 // Usar directamente el elemento HTML
+    });
+    pdf.text(10, pdf.autoTable.previous.finalY + 20, 'Tasa de interés');
+    pdf.autoTable({
+        html: tabla2, // Usar directamente el elemento HTML
+        startY: pdf.autoTable.previous.finalY + 30
+    });
+    pdf.text(10, pdf.autoTable.previous.finalY + 20, 'Tabla de amortización');
+    pdf.autoTable({
+        html: tabla3, // Usar directamente el elemento HTML
+        startY: pdf.autoTable.previous.finalY + 30
+    });
+
+    // Descargar el PDF
+    pdf.save('tablas.pdf');
+});
+
+
+</script>
 </body>
 
 <footer>
