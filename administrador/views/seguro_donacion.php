@@ -1,6 +1,8 @@
+<?php
+$currentView = isset($_GET['view']) ? $_GET['view'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +11,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin:0;
             padding: 0;
             background-color: #f4f4f4;
+            font-family: Arial, sans-serif; 
+
         }
 
         h1 {
@@ -22,9 +26,39 @@
             margin: 0;
         }
 
+        #menu {
+            background-color: #071841;
+            padding: 10px;
+            text-align: right;
+        }
+
+        #menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #menu li.current a {
+            color: #fff;
+            background-color: #333;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
         form {
             max-width: 400px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
@@ -99,8 +133,23 @@
         }
     </style>
 </head>
-
 <body>
+<div id="menu">
+        <ul>
+            <li <?php echo ($currentView === 'informacion') ? 'class="current"' : ''; ?>>
+                <a href="index.php?view=informacion">Información de la Institución</a>
+            </li>
+            <li <?php echo ($currentView === 'tasa') ? 'class="current"' : ''; ?>>
+                <a href="index.php?view=tasa">Tasa de Crédito</a>
+            </li>
+            <li <?php echo ($currentView === 'seguro_donacion') ? 'class="current"' : ''; ?>>
+                <a href="index.php?view=seguro_donacion">Seguro y Donaciones</a>
+            </li>
+            <li <?php echo ($currentView === 'cerrar_sesion') ? 'class="current"' : ''; ?>>
+                <a href="index.php?view=cerrar_sesion">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
     <h1>Seguro y Donaciones</h1>
     <form action="guardar_seguro_donacion.php" method="post">
         <div>

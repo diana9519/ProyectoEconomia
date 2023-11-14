@@ -7,13 +7,13 @@ if (isset($_GET['view'])) {
     
     switch ($view) {
         case 'informacion':
-            $controller->mostrarInformacion();
+            $controller->mostrarVista($view);
             break;
         case 'tasa':
-            $controller->mostrarTasa();
+            $controller->mostrarVista($view);
             break;
         case 'seguro_donacion':
-            $controller->mostrarSeguroDonacion();
+            $controller->mostrarVista($view);
             break;
         default:
             echo "Vista no encontrada";
