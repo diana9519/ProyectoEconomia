@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #071841;
+    color: #fff;
+    margin: 0;
+}
+
+#Login{
+    color: #fff; /* Cambia el color del texto a azul (puedes ajustar según tus preferencias) */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    font-weight: bold; /* Hace que el texto sea más grueso */
+    /* Puedes agregar más estilos según tus necesidades */
+    float: right;
+    background-color: #696969; /* Color de fondo del cuadro (puedes personalizarlo) */
+    padding: 5px; /* Espaciado interno del contenedor (puedes ajustarlo según tus necesidades) */
+    border-radius: 10px
+}
+
+form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1cm;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: inline-block;
+    width: 100px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+
+}
+
+button[type="reset"] {
+    background-color: #ccc;
+    color: #333;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Estilos generales para el footer */
+footer {
+    background-color: #365b77;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Estilos para las columnas del footer */
+.footer-column {
+    width: 30%;
+    /* Ajusta el ancho de las columnas según tus preferencias */
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    padding: 10px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin: 5px 0;
+}
+
+.footer-column a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Estilos para los párrafos en el footer */
+footer p {
+    margin: 10px 0;
+}
+
+
+th,
+td {
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2 !important;
+}
+
+/* Estilos para los títulos principales de las tablas (Tabla 1, Tabla 2, Tabla 3) */
+#tituloTabla {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
+}
+
+#tituloTabla2 {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
+}
+#tituloTabla3 {
+    padding: 15px;
+    background-color: #071841 !important; /* Mantener el fondo para la Tabla 1 */
+    color: #fff !important;
+    font-size: 20px;
+    
+     /* Mantener el color del texto para la Tabla 1 */
+}
+
+
+/* Estilos para la tabla existente (Tabla 1) */
+#tabla1 {
+    margin: 1cm auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla1 th,
+#tabla1 td {
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+#tabla1 .tituloTabla {
+    
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 1 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 1 */
+}
+
+
+
+#tabla1 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
+
+/* Estilos para la nueva tabla (Tabla 2) */
+#tabla2 {
+    margin: 0 auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla2 .tituloTabla {
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 2 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 2 */
+}
+#tabla2 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
+
+/* Estilos para la nueva tabla (Tabla 3) */
+#tabla3 {
+    margin: 1cm auto !important;
+    border-collapse: collapse !important;
+    width: max-content !important;
+}
+
+#tabla3 .tituloTabla {
+    background-color: #071841; /* Color diferente para los títulos de la Tabla 3 */
+    color: #fff; /* Color del texto para los títulos de la Tabla 3 */
+}
+
+#tabla3 tr:nth-child(odd) {
+    color: #fff;
+    background-color: #365B77!important; /* Rojo más oscuro para filas impares */
+}
+
+
+
