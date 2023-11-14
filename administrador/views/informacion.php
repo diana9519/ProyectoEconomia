@@ -7,14 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
 }
 
 
-//$imagenBinaria = $detallesInstitucion['logo'];
-//$imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
-
-//header('Content-Type:' . $imagenTipo);
-//echo $imagenBinaria;
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
             color: #fff;
             margin: 0;
         }
-
+        #logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
         #menu {
             background-color: #071841;
             padding: 10px;
@@ -150,6 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     </style>
 </head>
 <body>
+<div id="logo-container">
+<?php
+        $imagenBinaria = $detallesInstitucion['logo'];
+        $imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
+        $imagenCodificada = 'data:' . $imagenTipo . ';base64,' . base64_encode($imagenBinaria);
+        ?>
+        <img src="<?php echo $imagenCodificada; ?> "style="width:100px" alt="Logo Actual">
+    </div>
 <div id="menu">
         <ul>
             <li <?php echo ($currentView === 'informacion') ? 'class="current"' : ''; ?>>
@@ -175,9 +179,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
         
         <label for="logo">Logo:</label>
         <!-- Mostrar la imagen actual -->
-        <img src="mostrar-imagen.php?id=<?php echo $detallesInstitucion['id']; ?>" alt="Logo Actual" style="width:10px;"> 
-
-        
+        <?php
+        $imagenBinaria = $detallesInstitucion['logo'];
+        $imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
+        $imagenCodificada = 'data:' . $imagenTipo . ';base64,' . base64_encode($imagenBinaria);
+        ?>
+        <img src="<?php echo $imagenCodificada; ?> "style="width:200px" alt="Logo Actual">
         <!-- Permitir la carga de un nuevo logo si es necesario -->
         <input type="file" id="logo" name="logo" accept="image/*">
         

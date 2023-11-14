@@ -19,6 +19,7 @@ class Controller {
 
             case 'tasa':
                 $tiposDeCreditos = $this->modelo->obtenerTiposDeCreditos();
+                $detallesInstitucion = $this->modelo->obtenerInstituciones()[0]; 
                 include 'views/tasa.php';
                 break;
 
@@ -27,6 +28,22 @@ class Controller {
                 break;
         }
     }
+
+
+    public function guardarInformacion($datos) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
+            $controller = new Controller();
+        
+            switch ($_POST['accion']) {
+                case 'guardar_informacion':
+                    // Llama a un método en el controlador para manejar la acción de guardar
+                    $controller->guardarInformacion($_POST);
+                    break;
+                // Otros casos según sea necesario...
+            }
+        }
+    }
+    
     
 
 

@@ -53,6 +53,21 @@ class ModeloGeneral{
             return null;  // Maneja el error según tu lógica
         }
     }
+    public function guardarInformacion($datos) {
+        // Obtener datos del formulario
+        $id = $datos['id'];
+        $nombre = $this->conexion->real_escape_string($datos['nombre']);
+        $direccion = $this->conexion->real_escape_string($datos['direccion']);
+        // Otros campos...
+
+        // Validar y actualizar en la base de datos
+        $query = "UPDATE instituciones SET nombre = '$nombre', direccion = '$direccion' WHERE id = '$id'";
+        $resultado = $this->conexion->query($query);
+
+        // Redirigir a la vista después de guardar
+        header("Location: index.php?view=informacion");
+        exit();
+    }
     
 
     public function actualizarInstitucion($id, $nombre, $logo, $direccion, $telefono) {

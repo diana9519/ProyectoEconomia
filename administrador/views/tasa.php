@@ -1,5 +1,9 @@
 <?php
 $currentView = isset($_GET['view']) ? $_GET['view'] : '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
+    $controller = new Controller();
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +21,11 @@ $currentView = isset($_GET['view']) ? $_GET['view'] : '';
             background-color: #f4f4f4;
             font-family: Arial, sans-serif; 
 
+        }
+        #logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
 
         h1 {
@@ -136,6 +145,14 @@ $currentView = isset($_GET['view']) ? $_GET['view'] : '';
 </head>
 
 <body>
+<div id="logo-container">
+<?php
+        $imagenBinaria = $detallesInstitucion['logo'];
+        $imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
+        $imagenCodificada = 'data:' . $imagenTipo . ';base64,' . base64_encode($imagenBinaria);
+        ?>
+        <img src="<?php echo $imagenCodificada; ?> "style="width:100px" alt="Logo Actual">
+    </div>
     <div id="menu">
         <ul>
             <li <?php echo ($currentView === 'informacion') ? 'class="current"' : ''; ?>>
