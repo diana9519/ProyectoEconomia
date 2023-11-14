@@ -12,9 +12,7 @@ if (isset($_GET['view'])) {
         case 'tasa':
             $controller->mostrarVista($view);
             break;
-        case 'seguro_donacion':
-            $controller->mostrarVista($view);
-            break;
+
         default:
             echo "Vista no encontrada";
             break;

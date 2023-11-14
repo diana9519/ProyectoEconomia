@@ -9,17 +9,6 @@ class ModeloGeneral{
         $this->conexion = new ConexionDB();
     }
 
-    public function obtenerCobrosIndirectos() {
-        $query = "SELECT * FROM cobros_indirectos";
-        $resultado = $this->conexion->query($query);
-
-        $cobrosIndirectos = array();
-        while ($fila = $resultado->fetch_assoc()) {
-            $cobrosIndirectos[] = $fila;
-        }
-
-        return $cobrosIndirectos;
-    }
 
     public function obtenerInstituciones() {
         $query = "SELECT * FROM instituciones";
@@ -45,52 +34,26 @@ class ModeloGeneral{
         return $tiposDeCreditos;
     }
 
-    // Otros métodos CRUD según sea necesario
-    
-    // Métodos para la tabla 'cobros_indirectos'
-    public function insertarCobroIndirecto($idTipoCredito, $nombre, $monto) {
-        $idTipoCredito = $this->conexion->real_escape_string($idTipoCredito);
-        $nombre = $this->conexion->real_escape_string($nombre);
-        $monto = $this->conexion->real_escape_string($monto);
-
-        $query = "INSERT INTO cobros_indirectos (id_tipo_credito, nombre, monto) VALUES ('$idTipoCredito', '$nombre', '$monto')";
-        return $this->conexion->query($query);
-    }
-
-    public function actualizarCobroIndirecto($id, $idTipoCredito, $nombre, $monto) {
-        $id = $this->conexion->real_escape_string($id);
-        $idTipoCredito = $this->conexion->real_escape_string($idTipoCredito);
-        $nombre = $this->conexion->real_escape_string($nombre);
-        $monto = $this->conexion->real_escape_string($monto);
-
-        $query = "UPDATE cobros_indirectos SET id_tipo_credito='$idTipoCredito', nombre='$nombre', monto='$monto' WHERE id='$id'";
-        return $this->conexion->query($query);
-    }
-
-    public function eliminarCobroIndirecto($id) {
-        $id = $this->conexion->real_escape_string($id);
-
-        $query = "DELETE FROM cobros_indirectos WHERE id='$id'";
-        return $this->conexion->query($query);
-    }
-
     // Métodos para la tabla 'instituciones'
-    public function obtenerDetallesInstitucion($id) {
+    public function obtenerDetallesInstitucion1($id) {
         $id = $this->conexion->real_escape_string($id);
         $query = "SELECT * FROM instituciones WHERE id = '$id'";
         $resultado = $this->conexion->query($query);
         return $resultado->fetch_assoc();
     }
+    public function obtenerDetallesInstitucion($id) {
+        $id = $this->conexion->real_escape_string($id);
+        $query = "SELECT * FROM instituciones WHERE id = '$id'";
+        $resultado = $this->conexion->query($query);
     
-    public function insertarInstitucion($nombre, $logo, $direccion, $telefono) {
-        $nombre = $this->conexion->real_escape_string($nombre);
-        $logo = $this->conexion->real_escape_string($logo);
-        $direccion = $this->conexion->real_escape_string($direccion);
-        $telefono = $this->conexion->real_escape_string($telefono);
-
-        $query = "INSERT INTO instituciones (nombre, logo, direccion, telefono) VALUES ('$nombre', '$logo', '$direccion', '$telefono')";
-        return $this->conexion->query($query);
+        if ($resultado) {
+            $detalles = $resultado->fetch_assoc();
+            return $detalles['logo'];  // Devuelve el contenido binario del logo
+        } else {
+            return null;  // Maneja el error según tu lógica
+        }
     }
+    
 
     public function actualizarInstitucion($id, $nombre, $logo, $direccion, $telefono) {
         $id = $this->conexion->real_escape_string($id);
@@ -100,13 +63,6 @@ class ModeloGeneral{
         $telefono = $this->conexion->real_escape_string($telefono);
 
         $query = "UPDATE instituciones SET nombre='$nombre', logo='$logo', direccion='$direccion', telefono='$telefono' WHERE id='$id'";
-        return $this->conexion->query($query);
-    }
-
-    public function eliminarInstitucion($id) {
-        $id = $this->conexion->real_escape_string($id);
-
-        $query = "DELETE FROM instituciones WHERE id='$id'";
         return $this->conexion->query($query);
     }
 

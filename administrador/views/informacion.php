@@ -3,28 +3,17 @@ $currentView = isset($_GET['view']) ? $_GET['view'] : '';
 // Agrega esto al inicio de tu archivo index.php o donde procesas las solicitudes
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     $controller = new Controller();
-
-    switch ($_POST['accion']) {
-        case 'actualizar_informacion':
-            // Verifica que los campos necesarios estén presentes en el formulario
-            if (isset($_POST['nombre']) && isset($_POST['direccion'])) {
-                $nombre = $_POST['nombre'];
-                $direccion = $_POST['direccion'];
-                $controller->actualizarInformacionInstitucion($nombre, $direccion);
-            } else {
-                echo "Error: Campos de formulario faltantes.";
-            }
-            break;
-
-        // Otros casos según sea necesario
-
-        default:
-            // Manejar otros casos o mostrar un error
-            break;
-    }
+    
 }
 
-// Resto de tu código...
+
+//$imagenBinaria = $detallesInstitucion['logo'];
+//$imagenTipo = 'image/png';  // Ajusta esto según el tipo de imagen que estás manejando
+
+//header('Content-Type:' . $imagenTipo);
+//echo $imagenBinaria;
+
+
 
 ?>
 <!DOCTYPE html>
@@ -169,9 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
             <li <?php echo ($currentView === 'tasa') ? 'class="current"' : ''; ?>>
                 <a href="index.php?view=tasa">Tasa de Crédito</a>
             </li>
-            <li <?php echo ($currentView === 'seguro_donacion') ? 'class="current"' : ''; ?>>
-                <a href="index.php?view=seguro_donacion">Seguro y Donaciones</a>
-            </li>
+
             <li <?php echo ($currentView === 'cerrar_sesion') ? 'class="current"' : ''; ?>>
                 <a href="index.php?view=cerrar_sesion">Cerrar Sesión</a>
             </li>
@@ -179,20 +166,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     </div>
   
     <h1>Información de la Institución</h1>
-    <form action="p" method="post" enctype="multipart/form-data">
-        <label for="nombre">Nombre de la Institución:</label>
+    <form action="index.php?view=informacion" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $detallesInstitucion['id']; ?>">
+    <label for="nombre">Nombre de la Institución:</label>
         <input type="text" id="nombre" name="nombre" value="<?php echo $detallesInstitucion['nombre']; ?>" required>
         <label for="direccion">Dirección:</label>
         <input type="text" id="direccion" name="direccion" value="<?php echo $detallesInstitucion['direccion']; ?>" required>
         
         <label for="logo">Logo:</label>
         <!-- Mostrar la imagen actual -->
-        <img src="<?php echo $detallesInstitucion['logo']; ?>" alt="Logo Actual">
+        <img src="mostrar-imagen.php?id=<?php echo $detallesInstitucion['id']; ?>" alt="Logo Actual" style="width:10px;"> 
+
         
         <!-- Permitir la carga de un nuevo logo si es necesario -->
         <input type="file" id="logo" name="logo" accept="image/*">
         
-        <input type="submit" value="Guardar">
+        <input type="hidden" name="accion" value="guardar_informacion">
+    <input type="submit" value="Guardar">
     </form>
 
 </body>
@@ -218,6 +208,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
         <p>Correo Electrónico: info@sistemasdeamortizacion.com</p>
     </div>
 </footer>
-
-
 </html>
