@@ -1,6 +1,9 @@
 # Aplicación web - Sistema de amortización 
 Es una aplicación desarrollada para ser utilizada en el ámbito financiero y contable para planificar el pago de una deuda a lo largo del tiempo. Este sistema cuenta con dos sistemas de amortización, el Alemán y Francés.
-
+## Herramientas utilizadas
+<img src="https://cdn-icons-png.flaticon.com/512/174/174854.png" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+<img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_css_icon_130661.png"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
+<img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/mysql_original_wordmark_logo_icon_146417.png" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
 ## 👣 Primeros Pasos
 
 Estas instrucciones te guiarán en la configuración y ejecución de la aplicación en tu entorno local para propósitos de desarrollo y pruebas.
